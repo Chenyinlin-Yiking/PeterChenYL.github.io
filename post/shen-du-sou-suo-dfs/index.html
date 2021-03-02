@@ -1,0 +1,395 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>深度搜索DFS | Gridea</title>
+<link rel="shortcut icon" href="https://github.com/PeterChenYL/PeterChenYL.github.io/favicon.ico?v=1614673916118">
+<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://github.com/PeterChenYL/PeterChenYL.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="深度搜索DFS | Gridea - Atom Feed" href="https://github.com/PeterChenYL/PeterChenYL.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="深度搜索DFS
+以我目前个人的理解，深搜，即遍历所有可能性进行搜索某一个特点
+下面是一些有创新思路的深搜题目，供参考（感谢提供这些思路的dalao们）
+
+
+1.洛谷# P1162 填涂颜色
+题目描述
+由数字00组成的方阵中，有一任意形状闭合..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://github.com/PeterChenYL/PeterChenYL.github.io">
+  <img class="avatar" src="https://github.com/PeterChenYL/PeterChenYL.github.io/images/avatar.png?v=1614673916118" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              深度搜索DFS
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-02
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="深度搜索dfs">深度搜索DFS</h1>
+<p>以我目前个人的理解，深搜，即遍历所有可能性进行搜索某一个特点<br>
+下面是一些有创新思路的深搜题目，供参考（感谢提供这些思路的dalao们）</p>
+<pre><code>
+</code></pre>
+<h2 id="1洛谷-p1162-填涂颜色">1.洛谷# P1162 填涂颜色</h2>
+<p>题目描述</p>
+<p>由数字00组成的方阵中，有一任意形状闭合圈，闭合圈由数字11构成，围圈时只走上下左右44个方向。现要求把闭合圈内的所有空间都填写成22.例如：6 \times 66×6的方阵（n=6n=6），涂色前和涂色后的方阵如下：</p>
+<pre><code class="language-plain">0 0 0 0 0 0
+0 0 1 1 1 1
+0 1 1 0 0 1
+1 1 0 0 0 1
+1 0 0 0 0 1
+1 1 1 1 1 1
+
+</code></pre>
+<pre><code class="language-plain">0 0 0 0 0 0
+0 0 1 1 1 1
+0 1 1 2 2 1
+1 1 2 2 2 1
+1 2 2 2 2 1
+1 1 1 1 1 1
+
+</code></pre>
+<p><strong>输入格式</strong></p>
+<p>每组测试数据第一行一个整数n(1 \le n \le 30)n(1≤n≤30)</p>
+<p>接下来nn行，由00和11组成的n \times nn×n的方阵。</p>
+<p>方阵内只有一个闭合圈，圈内至少有一个00。</p>
+<p>//感谢黄小U饮品指出本题数据和数据格式不一样. 已修改(输入格式)</p>
+<p><strong>输出格式</strong></p>
+<p>已经填好数字22的完整方阵。</p>
+<p>输入输出样例</p>
+<p><strong>输入 #1</strong></p>
+<p>6<br>
+0 0 0 0 0 0<br>
+0 0 1 1 1 1<br>
+0 1 1 0 0 1<br>
+1 1 0 0 0 1<br>
+1 0 0 0 0 1<br>
+1 1 1 1 1 1</p>
+<p><strong>输出 #1</strong></p>
+<p>0 0 0 0 0 0<br>
+0 0 1 1 1 1<br>
+0 1 1 2 2 1<br>
+1 1 2 2 2 1<br>
+1 2 2 2 2 1<br>
+1 1 1 1 1 1</p>
+<p>说明/提示<br>
+1&lt;=n&lt;=30</p>
+<p><strong>思路：</strong><br>
+遍历搜索0，把不是0的以最终输出形式‘2’存进另外的数组，把是0的依旧以形式’0‘存进另外的数组（有输入数组和另外一个数组），碰到是’0‘的点就继续四个方向搜索（碰到&gt;0的数即1，2时停止这一次搜索）<br>
+没错的是，上面这个思路已经很牛逼了，但是发现还是无法ac，原因在于下面这个样例是无法通过的：<br>
+其实本题也可以用广搜bfs的，此处暂时不提及。</p>
+<pre><code>
+</code></pre>
+<p><strong>输入 #2</strong><br>
+6<br>
+0 0 1 1 1 0<br>
+1 1 1 0 1 0<br>
+1 0 0 0 0 1<br>
+1 1 0 1 1 1<br>
+0 1 0 1 0 0<br>
+0 1 1 1 0 0</p>
+<p><strong>输出 #2</strong><br>
+0 0 1 1 1 0<br>
+1 1 1 2 1 0<br>
+1 2 2 2 2 1<br>
+1 1 2 1 1 1<br>
+0 1 2 1 0 0<br>
+0 1 1 1 0 0</p>
+<pre><code>
+</code></pre>
+<p>这个是无法通过的，原因很简单，从dfs（0，0）开始搜索后（即左上角），往下是不行的，往右搜之后又会卡住，然后就不再搜了，结果就是左下角，右上角，右下角的0全部以’2‘打印出，结果wa，为了防止这种情况发生，又一个巧妙地想法产生：<strong>在给定数据外面再加上一圈0</strong>，这个方法巧在，我就算dfs（0，0）一出来就是墙，但程序可以绕出题目给出范围，从外面的0深搜去到其他位置的0，就可以保证所有的0（除了被1，2包围）都可以被遍历，实现很简单，在循环的时候，另i=1，i&lt;=n即可，j同理（就是行列都留一列/行）<br>
+<img src="https://cdn.luogu.com.cn/upload/pic/72820.png" alt="输入图片描述" loading="lazy"></p>
+<pre><code>
+</code></pre>
+<p>其实不只是上述方法，同样的思路还有一种骚操作：<strong>在外面加上一圈2</strong>，然后呢，保留原有的0，把包括最外圈的2和由1围成的圈之外的所有数字2变成0，再把最外层删去，输出剩余的就是正确答案。<br>
+<strong>在图外加一圈2，就把断开的圈外2连起来了,</strong>  （这里为了好区分，把圈内写为0）</p>
+<pre><code>10
+2 2 2 2 2 2 2 2 2 2 2 2
+2 1 1 1 2 1 1 1 1 1 2 2
+2 1 0 1 2 1 0 0 0 1 1 2
+2 1 0 1 1 1 0 0 0 0 1 2
+2 1 0 0 0 0 0 0 0 0 1 2
+2 1 1 0 0 0 0 0 0 0 1 2
+2 2 1 0 0 0 0 1 1 1 1 2
+2 1 1 0 0 0 0 1 2 2 2 2
+2 1 0 0 0 0 0 1 1 1 1 2
+2 1 1 1 1 1 0 0 0 0 1 2
+2 2 2 2 2 1 1 1 1 1 1 2
+2 2 2 2 2 2 2 2 2 2 2 2
+
+</code></pre>
+<p>很显然现在只要从(0,0)开始搜一次就可以把所有圈外2变成0</p>
+<pre><code>10
+0 0 0 0 0 0 0 0 0 0 0 0
+0 1 1 1 0 1 1 1 1 1 0 0
+0 1 2 1 0 1 2 2 2 1 1 0
+0 1 2 1 1 1 2 2 2 2 1 0
+0 1 2 2 2 2 2 2 2 2 1 0
+0 1 1 2 2 2 2 2 2 2 1 0
+0 0 1 2 2 2 2 1 1 1 1 0
+0 1 1 2 2 2 2 1 0 0 0 0
+0 1 2 2 2 2 2 1 1 1 1 0
+0 1 1 1 1 1 2 2 2 2 1 0
+0 0 0 0 0 1 1 1 1 1 1 0
+0 0 0 0 0 0 0 0 0 0 0 0
+
+</code></pre>
+<p>然后无视外圈直接输出原图大小就行了</p>
+<pre><code>10
+1 1 1 0 1 1 1 1 1 0 
+1 2 1 0 1 2 2 2 1 1
+1 2 1 1 1 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 1
+1 1 2 2 2 2 2 2 2 1
+0 1 2 2 2 2 1 1 1 1
+1 1 2 2 2 2 1 0 0 0
+1 2 2 2 2 2 1 1 1 1
+1 1 1 1 1 2 2 2 2 1
+0 0 0 0 1 1 1 1 1 1
+</code></pre>
+<p>最后奉上该题代码（最先是dalao的思路，自己再思考实现的）<br>
+1.外圈加0</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define re register
+#define SPACE 100
+using namespace std;
+int get[SPACE][SPACE+1];
+int change[SPACE][SPACE+1];
+int lx[5]={0,-1,0,1,0},ly[5]={0,0,1,0,-1};
+int n;
+
+
+void dfs(int x,int y)
+{
+    if(x&lt;0||x&gt;n+1||y&lt;0||y&gt;n+1||change[x][y]!=0)
+        return ;
+    change[x][y]=1;
+    for(re int i=1;i&lt;=4;i++)
+    {
+        int nx = x + lx[i];int ny = y + ly[i];
+        dfs(nx,ny);
+    }
+}
+
+int main()
+{
+    cin&gt;&gt;n;
+    for(re int i=1;i&lt;=n;i++)
+    {
+        for(re int j=1;j&lt;=n;j++)
+        {
+            cin&gt;&gt;get[i][j];
+            if(get[i][j]==0)
+                change[i][j]=0;
+            else
+                change[i][j]=2;
+        }
+    }
+    dfs(0,0);
+    for(re int i=1;i&lt;=n;i++)
+    {
+        for(re int j=1;j&lt;=n;j++)
+        {
+            if(change[i][j]==0)
+                cout&lt;&lt;2&lt;&lt;' ';
+            else
+                cout&lt;&lt;get[i][j]&lt;&lt;' ';
+        }
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}
+
+</code></pre>
+<p>2.外圈加2</p>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+int dx[4]={1,0,-1,0};
+int dy[4]={0,1,0,-1};
+int n;
+int mark[200][200];
+bool v[200][200];
+void dfs(int i,int j)
+{
+	if(v[i][j])
+	return;
+	v[i][j]=1;
+	for(int x=0;x&lt;4;x++){
+		int w=i+dx[x],e=j+dy[x];
+		if(w&gt;=0&amp;&amp;w&lt;=n+1&amp;&amp;e&gt;=0&amp;&amp;e&lt;=n+1&amp;&amp;mark[w][e]==2&amp;&amp;v[w][e]==0){
+			mark[w][e]=0;
+			dfs(w,e);
+		}
+	}
+}
+int main()
+{
+	cin&gt;&gt;n;
+	for(int i=1;i&lt;=n;i++)//数组当然要从1开始用了，要给加圈留空间 
+		for(int j=1;j&lt;=n;j++){
+			cin&gt;&gt;mark[i][j];
+			if(mark[i][j]==0)//把0 都变为2 
+				mark[i][j]=2;
+		}
+	for(int i=0;i&lt;=n+1;i++){//在外圈加一圈2 
+		mark[i][0]=2;
+		mark[i][n+1]=2;
+		mark[n+1][i]=2;
+		mark[0][i]=2;
+	}
+	dfs(0,0);//从(0,0)开始搜 
+	for(int i=1;i&lt;=n;i++){//无视外圈直接输出 
+		for(int j=1;j&lt;=n;j++){
+			cout&lt;&lt;mark[i][j]&lt;&lt;&quot; &quot;;
+		}
+		cout&lt;&lt;endl;
+	}
+	return 0;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%B7%B1%E5%BA%A6%E6%90%9C%E7%B4%A2dfs">深度搜索DFS</a>
+<ul>
+<li><a href="#1%E6%B4%9B%E8%B0%B7-p1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2">1.洛谷# P1162 填涂颜色</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/PeterChenYL/PeterChenYL.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://github.com/PeterChenYL/PeterChenYL.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
