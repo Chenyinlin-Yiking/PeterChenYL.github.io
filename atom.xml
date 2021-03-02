@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://github.com/PeterChenYL/PeterChenYL.github.io</id>
+    <id>https://PeterChenYL.github.io</id>
     <title>Gridea</title>
-    <updated>2021-03-02T08:35:07.721Z</updated>
+    <updated>2021-03-02T08:36:03.279Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://github.com/PeterChenYL/PeterChenYL.github.io"/>
-    <link rel="self" href="https://github.com/PeterChenYL/PeterChenYL.github.io/atom.xml"/>
+    <link rel="alternate" href="https://PeterChenYL.github.io"/>
+    <link rel="self" href="https://PeterChenYL.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://github.com/PeterChenYL/PeterChenYL.github.io/images/avatar.png</logo>
-    <icon>https://github.com/PeterChenYL/PeterChenYL.github.io/favicon.ico</icon>
+    <logo>https://PeterChenYL.github.io/images/avatar.png</logo>
+    <icon>https://PeterChenYL.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[深度搜索DFS]]></title>
-        <id>https://github.com/PeterChenYL/PeterChenYL.github.io/post/shen-du-sou-suo-dfs/</id>
-        <link href="https://github.com/PeterChenYL/PeterChenYL.github.io/post/shen-du-sou-suo-dfs/">
+        <id>https://PeterChenYL.github.io/post/shen-du-sou-suo-dfs/</id>
+        <link href="https://PeterChenYL.github.io/post/shen-du-sou-suo-dfs/">
         </link>
         <updated>2021-03-02T08:27:50.000Z</updated>
         <content type="html"><![CDATA[<h1 id="深度搜索dfs">深度搜索DFS</h1>
@@ -243,8 +243,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://github.com/PeterChenYL/PeterChenYL.github.io/post/hello-gridea/</id>
-        <link href="https://github.com/PeterChenYL/PeterChenYL.github.io/post/hello-gridea/">
+        <id>https://PeterChenYL.github.io/post/hello-gridea/</id>
+        <link href="https://PeterChenYL.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
